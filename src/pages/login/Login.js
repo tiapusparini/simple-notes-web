@@ -21,7 +21,7 @@ import logo from "./logo.svg";
 import google from "../../images/google.svg";
 
 // context
-import { useUserDispatch, loginUser } from "../../context/UserContext";
+import { useUserDispatch, loginUser, signUpUser } from "../../context/UserContext";
 
 function Login(props) {
   var classes = useStyles();
@@ -33,9 +33,11 @@ function Login(props) {
   var [isLoading, setIsLoading] = useState(false);
   var [error, setError] = useState(null);
   var [activeTabId, setActiveTabId] = useState(0);
-  var [nameValue, setNameValue] = useState("");
+  var [namaValue, setNamaValue] = useState("");
+  var [usernameValue, setUsernameValue] = useState("");
   var [loginValue, setLoginValue] = useState("");
   var [passwordValue, setPasswordValue] = useState("");
+  var [loginPassValue, setLoginPassValue] = useState("");
 
   return (
     <Grid container className={classes.container}>
@@ -52,17 +54,14 @@ function Login(props) {
             textColor="primary"
             centered
           >
-            {/* <Tab label="Login" classes={{ root: classes.tab }} /> */}
-            {/* <Tab label="New User" classes={{ root: classes.tab }} /> */}
+            <Tab label="Login" classes={{ root: classes.tab }} />
+            <Tab label="Register" classes={{ root: classes.tab }} />
           </Tabs>
           {activeTabId === 0 && (
             <React.Fragment>
-              {/* <Typography variant="h1" className={classes.greeting}>
-                Tehe Web
-              </Typography> */}
-              <Typography variant="h3" className={classes.subGreeting}>
+              {/* <Typography variant="h3" className={classes.subGreeting}>
                 Login
-              </Typography>
+              </Typography> */}
               {/* <Button size="large" className={classes.googleButton}>
                 <img src={google} alt="google" className={classes.googleIcon} />
                 &nbsp;Sign in with Google
@@ -99,8 +98,8 @@ function Login(props) {
                     input: classes.textField,
                   },
                 }}
-                value={passwordValue}
-                onChange={(e) => setPasswordValue(e.target.value)}
+                value={loginPassValue}
+                onChange={(e) => setLoginPassValue(e.target.value)}
                 margin="normal"
                 placeholder="Password"
                 type="password"
@@ -112,17 +111,17 @@ function Login(props) {
                 ) : (
                   <Button
                     disabled={
-                      loginValue.length === 0 || passwordValue.length === 0
+                      loginValue.length === 0 || loginPassValue.length === 0
                     }
                     onClick={() =>
                       loginUser(
                         userDispatch,
                         loginValue,
-                        passwordValue,
+                        loginPassValue,
                         props.history,
                         setIsLoading,
                         setError,
-                      )
+                      ) 
                     }
                     variant="contained"
                     color="primary"
@@ -136,19 +135,19 @@ function Login(props) {
                   size="large"
                   className={classes.forgetButton}
                 >
-                  Forget Password
+                  Register
                 </Button> */}
               </div>
             </React.Fragment>
           )}
-          {/* {activeTabId === 1 && (
+          {activeTabId === 1 && (
             <React.Fragment>
-              <Typography variant="h1" className={classes.greeting}>
+              {/* <Typography variant="h1" className={classes.greeting}>
                 Welcome!
               </Typography>
               <Typography variant="h2" className={classes.subGreeting}>
                 Create your account
-              </Typography>
+              </Typography> */}
               <Fade in={error}>
                 <Typography color="secondary" className={classes.errorMessage}>
                   Something is wrong with your login or password :(
@@ -162,26 +161,26 @@ function Login(props) {
                     input: classes.textField,
                   },
                 }}
-                value={nameValue}
-                onChange={(e) => setNameValue(e.target.value)}
+                value={namaValue}
+                onChange={(e) => setNamaValue(e.target.value)}
                 margin="normal"
                 placeholder="Full Name"
                 type="text"
                 fullWidth
               />
               <TextField
-                id="email"
+                id="username"
                 InputProps={{
                   classes: {
                     underline: classes.textFieldUnderline,
                     input: classes.textField,
                   },
                 }}
-                value={loginValue}
-                onChange={(e) => setLoginValue(e.target.value)}
+                value={usernameValue}
+                onChange={(e) => setUsernameValue(e.target.value)}
                 margin="normal"
-                placeholder="Email Adress"
-                type="email"
+                placeholder="Username"
+                type="text"
                 fullWidth
               />
               <TextField
@@ -205,9 +204,10 @@ function Login(props) {
                 ) : (
                   <Button
                     onClick={() =>
-                      loginUser(
+                      signUpUser(
                         userDispatch,
-                        loginValue,
+                        namaValue,
+                        usernameValue,
                         passwordValue,
                         props.history,
                         setIsLoading,
@@ -215,9 +215,9 @@ function Login(props) {
                       )
                     }
                     disabled={
-                      loginValue.length === 0 ||
-                      passwordValue.length === 0 ||
-                      nameValue.length === 0
+                      namaValue.length === 0 ||
+                      usernameValue.length === 0 ||
+                      passwordValue.length === 0 
                     }
                     size="large"
                     variant="contained"
@@ -229,7 +229,7 @@ function Login(props) {
                   </Button>
                 )}
               </div>
-              <div className={classes.formDividerContainer}>
+              {/* <div className={classes.formDividerContainer}>
                 <div className={classes.formDivider} />
                 <Typography className={classes.formDividerWord}>or</Typography>
                 <div className={classes.formDivider} />
@@ -243,9 +243,9 @@ function Login(props) {
               >
                 <img src={google} alt="google" className={classes.googleIcon} />
                 &nbsp;Sign in with Google
-              </Button>
+              </Button> */}
             </React.Fragment>
-          )} */}
+          )}
         </div>
         {/* <Typography color="primary" className={classes.copyright}>
           © 2014-{new Date().getFullYear()}{" "}

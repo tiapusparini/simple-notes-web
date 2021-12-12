@@ -9,6 +9,12 @@ function userReducer(state, action) {
       return { ...state, isAuthenticated: true };
     case "SIGN_OUT_SUCCESS":
       return { ...state, isAuthenticated: false };
+    case "LOGIN_FAILURE":
+      return { ...state, isAuthenticated: false };
+    case "SIGNUP_SUCCESS":
+      return { ...state, isAuthenticated: false };
+    case "SIGNUP_FAILURE":
+      return { ...state, isAuthenticated: false };
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
     }
@@ -45,11 +51,11 @@ function useUserDispatch() {
   return context;
 }
 
-export { UserProvider, useUserState, useUserDispatch, loginUser, signOut };
+export { UserProvider, useUserState, useUserDispatch, loginUser, signOut, signUpUser };
 
 // ###########################################################
 
-  function loginUser(dispatch, login, password, history, setIsLoading, setError) {
+function loginUser(dispatch, login, password, history, setIsLoading, setError) {
     setError(false);
     setIsLoading(true);
 
@@ -84,12 +90,47 @@ export { UserProvider, useUserState, useUserDispatch, loginUser, signOut };
         setError(true);
         setIsLoading(false);
       });
-
-  
 }
 
 function signOut(dispatch, history) {
   localStorage.removeItem("token");
   dispatch({ type: "SIGN_OUT_SUCCESS" });
   history.push("/login");
+}
+
+function signUpUser(dispatch, nama, username, password, history, setIsLoading, setError){
+  // setError(false);
+  setIsLoading(true);
+
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+  var urlencoded = new URLSearchParams();
+  urlencoded.append("nama", nama);
+  urlencoded.append("username", username);
+  urlencoded.append("password", password);
+
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: urlencoded,
+    redirect: 'follow'
+  };
+
+  fetch("https://tia-notes-api.herokuapp.com/auth/register", requestOptions)
+    .then(response => response.json())
+    .then(result => {
+      console.log(result);
+      // setError(null);
+      setIsLoading(false);
+      dispatch({ type: "SIGNUP_SUCCESS" });
+
+      history.push("/login");
+    })
+    .catch(error => {
+      console.log(error);
+      // setError(true);
+      dispatch({ type: "SIGNUP_FAILURE" });
+      setIsLoading(false);
+    });
 }
