@@ -16,7 +16,7 @@ export default makeStyles((theme) => ({
   appBar: {
     display: "flex",
     zIndex: theme.zIndex.drawer + 1,
-    backgroundColor: "#6b5b95",
+    backgroundColor: "#2d4059",//2d4059 6b5b95
     transition: theme.transitions.create(["margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
