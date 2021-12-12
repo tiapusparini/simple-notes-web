@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Modal, Button, Box, Divider } from "@material-ui/core";
+import { Modal, Button, IconButton, Box, Divider } from "@material-ui/core";
+import { Visibility, Clear } from "@material-ui/icons";
 
 const getModalStyle = () => {
   const top = 50;
@@ -76,16 +77,16 @@ export const CustomModalEdit = ({
 
   return (
     <div>
-      <Button
+      <IconButton
         onClick={() => {
           handleInitialData();
           handleOpen();
         }}
         size="small"
-        color="primary"
+        // color="#222831"
       >
-        Detail
-      </Button>
+        <Visibility style={{ color: "222831" }} />
+      </IconButton>
       <Modal
         open={open}
         onClose={handleClose}
