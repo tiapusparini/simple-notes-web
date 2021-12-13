@@ -48,8 +48,8 @@ export const CustomModalEdit = ({
   const body = (
     <div style={modalStyle} className={classes.paper}>
       <h2>Detail</h2>
-      <Divider />
-      <br />
+      {/* <Divider /> */}
+      {/* <br /> */}
       {children}
       <Divider />
       <Box

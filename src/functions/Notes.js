@@ -45,6 +45,7 @@ export const postNotes = (data) => {
   const body = {
     judul: data.judul,
     isi: data.isi,
+    kodeWarna: data.kodeWarna,
     id_pengguna: data.id_pengguna,
   };
 
@@ -62,6 +63,7 @@ export const putNotes = (data) => {
   const body = {
     judul: data.judul,
     isi: data.isi,
+    kodeWarna: data.kodeWarna,
     id_pengguna: data.id_pengguna,
   };
 

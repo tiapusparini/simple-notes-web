@@ -50,21 +50,11 @@ export const CustomModalTambah = ({ handleTambah, handleInitialData, children })
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <Box display="flex" alignItems="center" justifyContent="space-between">
-        <h2>Buat Catatan</h2>
-        <ButtonGroup>
-          <Fab 
-            color="primary" 
-            size="small"
-            onClick={() => {
-              handleInitialData();
-            }}></Fab>
-          <Fab color="secondary" size="small"></Fab>
-          <Fab color="warning" size="small"></Fab>
-        </ButtonGroup>
-      </Box>
-      <Divider />
-      <br />
+      {/* <Box display="flex" alignItems="center" justifyContent="space-between"> */}
+      <h2>Buat Catatan</h2>
+      {/* </Box> */}
+      {/* <Divider /> */}
+      {/* <br /> */}
       {children}
       <Divider />
       <Box
