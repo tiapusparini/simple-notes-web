@@ -4,7 +4,7 @@ axios.defaults.baseURL = "https://tia-notes-api.herokuapp.com/";
 
 export let axiosConfig = {
   headers: {
-    Authorization: `Bearer ${localStorage.token}`,
+    Authorization: `Bearer ${localStorage.getItem('token')}`,
   },
 };
 
