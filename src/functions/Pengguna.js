@@ -2,11 +2,11 @@ import axios from "axios";
 
 axios.defaults.baseURL = "https://tia-notes-api.herokuapp.com/";
 
-export let axiosConfig = {
+const axiosConfig = () => ({
   headers: {
-    Authorization: `Bearer ${localStorage.getItem('token')}`,
+    Authorization: `Bearer ${localStorage.getItem("token")}`,
   },
-};
+});
 
 export const getPengguna = () => {
   return axios
