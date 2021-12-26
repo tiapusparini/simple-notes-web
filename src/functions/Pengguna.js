@@ -2,13 +2,12 @@ import axios from "axios";
 
 axios.defaults.baseURL = "https://tia-notes-api.herokuapp.com/";
 
-const axiosConfig = () => ({
-  headers: {
-    Authorization: `Bearer ${localStorage.getItem("token")}`,
-  },
-});
-
 export const getPengguna = () => {
+  const axiosConfig = {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  };
   return axios
     .get("pengguna/", axiosConfig)
     .then((response) => {
@@ -20,6 +19,11 @@ export const getPengguna = () => {
 };
 
 export const getPenggunaById = (id) => {
+  const axiosConfig = {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  };
   return axios
     .get("pengguna/" + id, axiosConfig)
     .then((response) => {
@@ -48,6 +52,11 @@ export const getPenggunaById = (id) => {
 // };
 
 export const putPengguna = (pengguna) => {
+  const axiosConfig = {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  };
   const body = {
     nama: pengguna.nama,
     username: pengguna.username,
@@ -65,6 +74,11 @@ export const putPengguna = (pengguna) => {
 };
 
 export const deletePengguna = (id) => {
+  const axiosConfig = {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  };
   return axios
     .delete("pengguna/" + id, axiosConfig)
     .then((response) => {
