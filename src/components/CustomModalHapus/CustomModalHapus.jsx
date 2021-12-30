@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Modal, Button, IconButton, Box, Divider } from "@material-ui/core";
+import { Modal, Button, IconButton, Box, Divider, Tooltip } from "@material-ui/core";
 import { Delete } from "@material-ui/icons";
 
 const getModalStyle = () => {
@@ -69,9 +69,11 @@ export const CustomModalDelete = ({ handleDelete }) => {
 
   return (
     <div>
-      <IconButton color="primary" onClick={handleOpen} size="small">
-        <Delete style={{ color: "#222831" }} />
-      </IconButton>
+      <Tooltip title="Hapus" placement="bottom">
+        <IconButton color="primary" onClick={handleOpen} size="small">
+          <Delete style={{ color: "#222831" }} />
+        </IconButton>
+      </Tooltip>
       <Modal
         open={open}
         onClose={handleClose}

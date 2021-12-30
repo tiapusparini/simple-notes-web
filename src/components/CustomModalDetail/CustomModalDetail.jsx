@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Modal, Button, IconButton, Box, Divider } from "@material-ui/core";
+import { Modal, Button, IconButton, Box, Divider, Tooltip } from "@material-ui/core";
 import { Visibility, Clear } from "@material-ui/icons";
 
 const getModalStyle = () => {
@@ -77,16 +77,18 @@ export const CustomModalEdit = ({
 
   return (
     <div>
-      <IconButton
-        onClick={() => {
-          handleInitialData();
-          handleOpen();
-        }}
-        size="small"
-        // color="#222831"
-      >
-        <Visibility style={{ color: "222831" }} />
-      </IconButton>
+      <Tooltip title="Edit" placement="bottom">
+        <IconButton
+          onClick={() => {
+            handleInitialData();
+            handleOpen();
+          }}
+          size="small"
+          // color="#222831"
+        >
+          <Visibility style={{ color: "222831" }} />
+        </IconButton>
+      </Tooltip>
       <Modal
         open={open}
         onClose={handleClose}

@@ -11,6 +11,7 @@ import {
   Link, 
   Container,
   Icon,
+  Tooltip,
 } from "@material-ui/core";
 import {
   Menu as MenuIcon,
@@ -132,15 +133,17 @@ export default function Header(props) {
             Simple Notes
           </Typography>
           <div className={classes.grow} />
-          <IconButton
-            aria-haspopup="true"
-            color="#ffffff"
-            className={classes.headerMenuButton}
-            aria-controls="profile-menu"
-            onClick={(e) => setProfileMenu(e.currentTarget)}
-          >
-            <AccountIcon classes={{ root: classes.headerIcon }} />
-          </IconButton>
+          <Tooltip title="Profile" placement="bottom">
+            <IconButton
+              aria-haspopup="true"
+              color="#ffffff"
+              className={classes.headerMenuButton}
+              aria-controls="profile-menu"
+              onClick={(e) => setProfileMenu(e.currentTarget)}
+            >
+              <AccountIcon classes={{ root: classes.headerIcon }} />
+            </IconButton>
+          </Tooltip>
           <Menu
             id="profile-menu"
             open={Boolean(profileMenu)}
