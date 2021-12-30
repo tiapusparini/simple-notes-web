@@ -238,6 +238,9 @@ export default function Note() {
                           const tempJudul = e.target.value;
                           setEditState((c) => ({ ...c, judul: tempJudul }));
                         }}
+                        inputProps={{
+                          maxLength: 40
+                        }}
                       />
                       <Typography variant="caption">Catatan</Typography>
                       <TextField
@@ -333,13 +336,15 @@ export default function Note() {
             <TextField
               autoFocus
               size="small"
-              // placeholder="Ketik disini"
               style={{ marginBottom: "13px" }}
               fullWidth
               value={tambahState.judul}
               onChange={(e) => {
                 const tempJudul = e.target.value;
                 setTambahState((c) => ({ ...c, judul: tempJudul }));
+              }}
+              inputProps={{
+                maxLength: 40
               }}
             />
             <Typography variant="caption">Catatan</Typography>
