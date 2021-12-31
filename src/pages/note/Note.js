@@ -35,7 +35,6 @@ export default function Note() {
   const history = useHistory();
   const [state, setState] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [sliceString, setSliceString] = useState([]);
   const [tambahState, setTambahState] = useState({
     kodeWarna: "",
     id_pengguna: "",
@@ -293,7 +292,7 @@ export default function Note() {
               setTambahState({
                 kodeWarna: "#dde0ab", //`${tambahState.kodeWarna}`
                 id_pengguna: localStorage.id,
-                judul: "",
+                judul: " ",
                 isi: "",
               });
             }}
@@ -304,7 +303,6 @@ export default function Note() {
                 onClick={() => {
                   const tempKodeWarna = "#9fd3c7";
                   setTambahState((c) => ({ ...c, kodeWarna: tempKodeWarna }));
-                  console.log(tempKodeWarna);
                 }}
               >
                 <FiberManualRecordIcon style={{ color: "#9fd3c7" }} />
@@ -314,7 +312,6 @@ export default function Note() {
                 onClick={() => {
                   const tempKodeWarna = "#a7bcb9";
                   setTambahState((c) => ({ ...c, kodeWarna: tempKodeWarna }));
-                  console.log(tempKodeWarna);
                 }}
               >
                 <FiberManualRecordIcon style={{ color: "#a7bcb9" }} />
@@ -324,7 +321,6 @@ export default function Note() {
                 onClick={() => {
                   const tempKodeWarna = "#dde0ab";
                   setTambahState((c) => ({ ...c, kodeWarna: tempKodeWarna }));
-                  console.log(tempKodeWarna);
                 }}
               >
                 <FiberManualRecordIcon style={{ color: "#dde0ab" }} />
