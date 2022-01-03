@@ -64,8 +64,8 @@ function Login(props) {
     <Grid container className={classes.container}>
 
       <div className={classes.logotypeContainer}>
-        {/* <img src={logo} alt="logo" className={classes.logotypeImage} /> */}
         <Typography className={classes.logotypeText}>Simple Notes</Typography>
+        <Typography style={{color:"white"}}>by Tia</Typography>
       </div>
       <div className={classes.formContainer}>
         <div className={classes.form}>
@@ -144,24 +144,11 @@ function Login(props) {
                     Login
                   </Button>
                 )}
-                {/* <Button
-                  color="primary"
-                  size="large"
-                  className={classes.forgetButton}
-                >
-                  Register
-                </Button> */}
               </div>
             </React.Fragment>
           )}
           {activeTabId === 1 && (
             <React.Fragment>
-              {/* <Typography variant="h1" className={classes.greeting}>
-                Welcome!
-              </Typography>
-              <Typography variant="h2" className={classes.subGreeting}>
-                Create your account
-              </Typography> */}
               <Fade in={errorRegist}>
                 <Alert severity="warning">
                   Data exist, please input another username :(
@@ -248,36 +235,12 @@ function Login(props) {
                   </Button>
                 )}
               </div>
-              {/* <div className={classes.formDividerContainer}>
-                <div className={classes.formDivider} />
-                <Typography className={classes.formDividerWord}>or</Typography>
-                <div className={classes.formDivider} />
-              </div>
-              <Button
-                size="large"
-                className={classnames(
-                  classes.googleButton,
-                  classes.googleButtonCreating,
-                )}
-              >
-                <img src={google} alt="google" className={classes.googleIcon} />
-                &nbsp;Sign in with Google
-              </Button> */}
             </React.Fragment>
           )}
         </div>
-        {/* <Typography color="primary" className={classes.copyright}>
-          © 2014-{new Date().getFullYear()}{" "}
-          <a
-            style={{ textDecoration: "none", color: "inherit" }}
-            href="https://flatlogic.com"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Flatlogic
-          </a>
-          , LLC. All rights reserved.
-        </Typography> */}
+        <Typography color="primary" className={classes.copyright}>
+          Copyright © 2021 Tia Pusparini. All rights reserved.
+        </Typography>
       </div>
     </Grid>
   );
