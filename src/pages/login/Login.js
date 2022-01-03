@@ -10,6 +10,7 @@ import {
   Fade,
   Box,
 } from "@material-ui/core";
+import { Alert, AlertTitle } from '@material-ui/lab';
 import { withRouter } from "react-router-dom";
 import classnames from "classnames";
 
@@ -31,16 +32,37 @@ function Login(props) {
 
   // local
   var [isLoading, setIsLoading] = useState(false);
-  var [error, setError] = useState(null);
+  var [errorRegist, setErrorRegist] = useState(false);
+  var [errorLogin, setErrorLogin] = useState(false);
+
   var [activeTabId, setActiveTabId] = useState(0);
   var [namaValue, setNamaValue] = useState("");
   var [usernameValue, setUsernameValue] = useState("");
-  var [loginValue, setLoginValue] = useState("");
   var [passwordValue, setPasswordValue] = useState("");
+  var [loginValue, setLoginValue] = useState("");
   var [loginPassValue, setLoginPassValue] = useState("");
+
+  const errorConfigLogin = (condition) => {
+    if(condition == true){
+      return setErrorLogin(true);
+    }
+    else{
+      return setErrorLogin(false);
+    }
+  };
+
+  const errorConfigRegist = (condition) => {
+    if(condition == true){
+      return setErrorRegist(true);
+    }
+    else{
+      return setErrorRegist(false);
+    }
+  };
 
   return (
     <Grid container className={classes.container}>
+
       <div className={classes.logotypeContainer}>
         {/* <img src={logo} alt="logo" className={classes.logotypeImage} /> */}
         <Typography className={classes.logotypeText}>Simple Notes</Typography>
@@ -59,23 +81,15 @@ function Login(props) {
           </Tabs>
           {activeTabId === 0 && (
             <React.Fragment>
-              {/* <Typography variant="h3" className={classes.subGreeting}>
-                Login
-              </Typography> */}
-              {/* <Button size="large" className={classes.googleButton}>
-                <img src={google} alt="google" className={classes.googleIcon} />
-                &nbsp;Sign in with Google
-              </Button> */}
-              {/* <div className={classes.formDividerContainer}>
-                <div className={classes.formDivider} />
-                <div className={classes.formDivider} />
-              </div> */}
-              <Fade in={error}>
-                <Typography color="secondary" className={classes.errorMessage}>
+              <Fade in={errorLogin}>
+                <div>
+                <Alert severity="warning">
                   Something is wrong with your login or password :(
-                </Typography>
+                </Alert>
+                </div>
               </Fade>
               <TextField
+                autoFocus
                 id="username"
                 InputProps={{
                   classes: {
@@ -86,7 +100,7 @@ function Login(props) {
                 value={loginValue}
                 onChange={(e) => setLoginValue(e.target.value)}
                 margin="normal"
-                placeholder="Username"
+                label="Username"
                 type="username"
                 fullWidth
               />
@@ -101,7 +115,7 @@ function Login(props) {
                 value={loginPassValue}
                 onChange={(e) => setLoginPassValue(e.target.value)}
                 margin="normal"
-                placeholder="Password"
+                label="Password"
                 type="password"
                 fullWidth
               />
@@ -120,7 +134,7 @@ function Login(props) {
                         loginPassValue,
                         props.history,
                         setIsLoading,
-                        setError,
+                        errorConfigLogin,
                       ) 
                     }
                     variant="contained"
@@ -148,13 +162,15 @@ function Login(props) {
               <Typography variant="h2" className={classes.subGreeting}>
                 Create your account
               </Typography> */}
-              <Fade in={error}>
-                <Typography color="secondary" className={classes.errorMessage}>
-                  Something is wrong with your login or password :(
-                </Typography>
+              <Fade in={errorRegist}>
+                <Alert severity="warning">
+                  Data exist, please input another username :(
+                </Alert>
               </Fade>
               <TextField
+                autoFocus
                 id="name"
+                label="Full Name"
                 InputProps={{
                   classes: {
                     underline: classes.textFieldUnderline,
@@ -164,7 +180,6 @@ function Login(props) {
                 value={namaValue}
                 onChange={(e) => setNamaValue(e.target.value)}
                 margin="normal"
-                placeholder="Full Name"
                 type="text"
                 fullWidth
               />
@@ -179,7 +194,7 @@ function Login(props) {
                 value={usernameValue}
                 onChange={(e) => setUsernameValue(e.target.value)}
                 margin="normal"
-                placeholder="Username"
+                label="Username"
                 type="text"
                 fullWidth
               />
@@ -194,8 +209,12 @@ function Login(props) {
                 value={passwordValue}
                 onChange={(e) => setPasswordValue(e.target.value)}
                 margin="normal"
-                placeholder="Password"
+                label="Password"
                 type="password"
+                // helperText="at least 8 character"
+                FormHelperTextProps={{
+                  className: classes.helperText
+                }}
                 fullWidth
               />
               <div className={classes.creatingButtonContainer}>
@@ -211,7 +230,7 @@ function Login(props) {
                         passwordValue,
                         props.history,
                         setIsLoading,
-                        setError,
+                        errorConfigRegist,
                       )
                     }
                     disabled={

@@ -55,8 +55,9 @@ export { UserProvider, useUserState, useUserDispatch, loginUser, signOut, signUp
 
 // ###########################################################
 
-function loginUser(dispatch, login, password, history, setIsLoading, setError) {
-    setError(false);
+function loginUser(dispatch, login, password, history, setIsLoading, errorConfigLogin) {
+    // errorConfigLogin(false);
+    // errorConfigLogin(false);
     setIsLoading(true);
 
     var myHeaders = new Headers();
@@ -76,18 +77,22 @@ function loginUser(dispatch, login, password, history, setIsLoading, setError) {
     fetch("https://tia-notes-api.herokuapp.com/auth/login", requestOptions)
       .then(response => response.json())
       .then(result => {
-        // console.log(result);
-        localStorage.setItem("token", result.data.token);
-        localStorage.setItem("id", result.data.id);
-        setError(null);
-        setIsLoading(false);
-        dispatch({ type: "LOGIN_SUCCESS" });
-  
-        history.push("/app/note");
+        if(result.data === null){
+          errorConfigLogin(true);
+          setIsLoading(false);
+        }else{
+          localStorage.setItem("token", result.data.token);
+          localStorage.setItem("id", result.data.id);
+          errorConfigLogin(false);
+          setIsLoading(false);
+          dispatch({ type: "LOGIN_SUCCESS" });
+
+          history.push("/app/note");
+        }
       })
       .catch(error => {
         dispatch({ type: "LOGIN_FAILURE" });
-        setError(true);
+        errorConfigLogin(true);
         setIsLoading(false);
       });
 }
@@ -98,8 +103,7 @@ function signOut(dispatch, history) {
   history.push("/login");
 }
 
-function signUpUser(dispatch, nama, username, password, history, setIsLoading, setError){
-  // setError(false);
+function signUpUser(dispatch, nama, username, password, history, setIsLoading, errorConfigRegist){
   setIsLoading(true);
 
   var myHeaders = new Headers();
@@ -120,17 +124,20 @@ function signUpUser(dispatch, nama, username, password, history, setIsLoading, s
   fetch("https://tia-notes-api.herokuapp.com/auth/register", requestOptions)
     .then(response => response.json())
     .then(result => {
-      console.log(result);
-      // setError(null);
-      setIsLoading(false);
-      dispatch({ type: "SIGNUP_SUCCESS" });
+      if(result.data === null){
+        errorConfigRegist(true);
+        setIsLoading(false);
+      }else{
+        dispatch({ type: "SIGNUP_SUCCESS" });
+        errorConfigRegist(false);
+        setIsLoading(false);
 
-      history.push("/login");
+        history.push("/login");
+      }
     })
     .catch(error => {
-      console.log(error);
-      // setError(true);
       dispatch({ type: "SIGNUP_FAILURE" });
+      errorConfigRegist(true);
       setIsLoading(false);
     });
 }
